@@ -27,7 +27,12 @@ public class UpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("UTF-8");
+		String userPwd = request.getParameter("userPwd");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String addr = request.getParameter("addr");
+		String hobby = request.getParameter("hobby");
 	}
 
 	/**

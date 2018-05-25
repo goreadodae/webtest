@@ -17,14 +17,14 @@
 <center>
 <h1>[<%=m.getUserName() %>]님의 정보</h1>
 <form action="/update" method="post">
-ID : <input type="text" placeholder="ID를 입력하세요" name="userId" id="userId " value="<%=m.getUserId()%>"/><br><br>
+ID : <input type="text" placeholder="ID를 입력하세요" readonly name="userId" id="userId " value="<%=m.getUserId()%>"/><br><br>
 PW : <input type="password" placeholder="PW를 입력하세요" name="userPwd" value="<%=m.getUserPwd()%>"/><br><br>
 PW(re) : <input type="password" placeholder="PW를 재입력하세요" name="userPwd_re" value="<%=m.getUserPwd()%>"/><br><br>
 Name : <input type="text" placeholder="이름을 입력하세요" name="userName" value="<%=m.getUserName()%>"/><br><br>
 Age : <input type="text" placeholder="나이을 입력하세요" name="age" value="<%=m.getAge()%>"/><br><br>
-Email : <input type="email" placeholder="이메일을 입력하세요" name="email" value="<%=m.getEmail()%>"/><br><br>
-phone : <input type="text" placeholder="폰번호를 입력하세요" name="phone" value="<%=m.getPhone()%>"/><br><br>
-Addr : <input type="text" placeholder="주소을 입력하세요" name="addr" value="<%=m.getAddress()%>"/><br><br>
+Email : <input type="email" placeholder="이메일을 입력하세요" readonly name="email" value="<%=m.getEmail()%>"/><br><br>
+phone : <input type="text" placeholder="폰번호를 입력하세요" readonly name="phone" value="<%=m.getPhone()%>"/><br><br>
+Addr : <input type="text" placeholder="주소을 입력하세요" readonly name="addr" value="<%=m.getAddress()%>"/><br><br>
 Gender : <% if(m.getGender().equals("M")){
 	%><input type="radio" name="gender" value="M" checked/>남
 	<input type="radio" name="gender" value="F" disabled/>여<br><br><%
