@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<style>
+    #idCheck{
+        display: inline-block;
+        position: absolute;
+        box-sizing: border-box;
+        background-color: red;
+    }
+    form{
+        display: inline-block;
+    }
+</style>
+</head>
+<body>
+<center>
+<h1>회원가입</h1>
+<h4>가입할 회원 정보를 입력하세요<br>
+   (*는 필수 입력 항목)
+</h4>
+<form action="/joinus" method="post">
+*ID : <input type="text" placeholder="ID를 입력하세요" name="userId" id="userId"/><br><br>
+*PW : <input type="password" placeholder="PW를 입력하세요" name="userPwd"/><br><br>
+*PW(re) : <input type="password" placeholder="PW를 재입력하세요" name="userPwd_re"/><br><br>
+*Name : <input type="text" placeholder="이름을 입력하세요" name="userName"/><br><br>
+Age : <input type="text" placeholder="나이을 입력하세요" name="age"/><br><br>
+*Email : <input type="email" placeholder="이메일을 입력하세요" name="email"/><br><br>
+*phone : <input type="text" placeholder="폰번호를 입력하세요" name="phone"/><br><br>
+Addr : <input type="text" placeholder="주소을 입력하세요" name="addr"/><br><br>
+*Gender : <input type="radio" name="gender" value="M"/>남
+<input type="radio" name="gender" value="F"/>여<br><br>
+취미 : <input type="text" placeholder="취미를 입력하세요" name="hobby"/><br><br>
+<input type="submit" value="회원가입" style="align: left"/>
+</form>
+<button onclick="back();">취소</button>
+<div id="idCheck">
+<button onclick="idCheck();">ID중복 체크</button><br>
+</div>
+
+<script>
+	function back(){
+		history.go(-1);
+	}
+	function idCheck(){
+		var checkId = document.getElementById('userId').value;
+		window.open("/views/member/idCheck.jsp?checkId="+checkId,
+				"ID중복확인","width=500 height=200");
+	}
+</script>
+</body>
+</html>

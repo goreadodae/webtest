@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ID 중복확인</title>
+</head>
+<body>
+<script>
+ 	function check(){
+ 		var checkId = document.getElementById('checkId').value;
+ 		location.href = "idCheck.jsp?checkId="+checkId;
+ 	}
+ 	window.onload = function(){
+ 		
+ 	}
+</script>
+중복 확인할 ID 입력 : <input type="text" id="checkId"/>
+<button onclick="check();">중복체크</button>
+<span id="message"></span>
+</body>
+</html>
