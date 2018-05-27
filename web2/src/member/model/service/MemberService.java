@@ -57,4 +57,17 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	public int updateMember(String userId, Member m) {
+		Connection conn = null;
+		conn = JDBCTemplate.getConnection();
+		int result = new MemberDAO().updateMember(conn, userId, m);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}
+		else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }
