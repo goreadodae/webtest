@@ -70,4 +70,17 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	public int deleteMember(String userId) {
+		Connection conn = null;
+		conn = JDBCTemplate.getConnection();
+		int result = new MemberDAO().deleteMember(conn, userId);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}
+		else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }

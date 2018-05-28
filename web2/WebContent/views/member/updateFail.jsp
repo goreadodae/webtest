@@ -10,7 +10,7 @@
 <script>
 	setTimeout(function(){
 		location.href="/mypage.jsp";
-	},3000);
+	},2000);
 </script>
 <h1>정보수정에 실패하였습니다.</h1>
 </body>

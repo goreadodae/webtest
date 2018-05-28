@@ -10,7 +10,7 @@
 <script>
 	setTimeout(function(){
 		location.href="/index.jsp";
-	},3000);
+	},2000);
 </script>
 <h1>정보수정완료.</h1>
 </body>

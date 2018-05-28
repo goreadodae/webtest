@@ -8,10 +8,9 @@
 </head>
 <body>
 <script>
-	setTimeout(function(){
-		location.href="/index.jsp";
-	},1500);
+	alert("탈퇴에 실패하였습니다. 비밀번호를 확인해주세요");
+	location.href="/index.jsp";
 </script>
-<h1>ID와 PW를 확인하여주세요</h1>
+<h1>탈퇴에 실패하였습니다.</h1>
 </body>
 </html>

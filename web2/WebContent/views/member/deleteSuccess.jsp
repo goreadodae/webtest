@@ -10,8 +10,8 @@
 <script>
 	setTimeout(function(){
 		location.href="/index.jsp";
-	},1500);
+	},2000);
 </script>
-<h1>ID와 PW를 확인하여주세요</h1>
+<h1>탈퇴하셨습니다.</h1>
 </body>
 </html>

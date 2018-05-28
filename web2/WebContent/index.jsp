@@ -62,14 +62,22 @@
     <label style="color:red;">비밀번호 입력 : </label>
     <input type="password" name="userPwd"/>
     <input type="submit" value="확인"/>
-    </form>
-    <a href="/logout">로그아웃</a>
-    <a href="">회원탈퇴</a>
+    </form><br>
+    <a href="/logout">로그아웃</a><br>
+    <label onclick="deleteMember();" id="infoBtn">회원탈퇴</label>
+    <form action="/deleteMember" method="post" style="display:none;" id="deleteMember">
+    <label style="color:red;">비밀번호 입력 : </label>
+    <input type="password" name="userPwd"/>
+    <input type="submit" value="확인"/>
+    </form><br>
     <% } %>
 </body>
 <script>
 function myInfo(){
 	document.getElementById("myInfo").style="display:inline";
+}
+function deleteMember(){
+	document.getElementById("deleteMember").style="display:inline";
 }
 </script>
 </html>
