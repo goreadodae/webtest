@@ -35,15 +35,16 @@ public class NoticeService {
 		return pd;
 	}
 
-	public PageData searchNotice(String search, int currentPage) {
+	public PageData searchNotice(int currentPage, String sel, String search) {
 		Connection conn = JDBCTemplate.getConnection();
 		int recordCountPerPage = 10;
 		int naviCountPerPage = 5;
 		
-		ArrayList<Notice> list = new NoticeDao().getCurrentPage(conn, currentPage, recordCountPerPage);
-		String pageNavi = new NoticeDao().getPageNavi(conn, currentPage, recordCountPerPage, naviCountPerPage);
+		ArrayList<Notice> list = new NoticeDao().getCurrentSearchPage(conn, currentPage, recordCountPerPage, sel, search);
+		String pageNavi = new NoticeDao().getSearchPageNavi(conn, currentPage, recordCountPerPage, naviCountPerPage, sel, search);
 		JDBCTemplate.close(conn);
-		
+		System.out.println(list);
+		System.out.println(pageNavi);
 		PageData pd = null;
 		if(!list.isEmpty() && !pageNavi.isEmpty()) {
 			pd = new PageData();

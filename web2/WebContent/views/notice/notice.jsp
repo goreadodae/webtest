@@ -27,6 +27,10 @@
 </table>
 <label><%=pageNavi %></label>
 <form action="/search" method="get">
+<select name="sel">
+		<option value="subject">제목</option>
+		<option value="userid">작성자</option>
+</select>
 <input type="text" name="search"/>
 <input type="submit" value="검색"/>
 </form>

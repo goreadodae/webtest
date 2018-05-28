@@ -2,6 +2,7 @@ package notice.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +32,7 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String sel = request.getParameter("sel");
 		String search = request.getParameter("search");
 		int currentPage;
 		if(request.getParameter("currentPage")==null) {  //첫페이지면 1로 셋팅 그외 페이지면 해당 페이지 값을 가져옴
@@ -39,7 +41,16 @@ public class SearchServlet extends HttpServlet {
 		else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		PageData pd = new NoticeService().searchNotice(search, currentPage);
+		PageData pd = new NoticeService().searchNotice(currentPage, sel, search);
+
+		if(pd==null) {
+			
+		}
+		else {
+			RequestDispatcher view = request.getRequestDispatcher("/views/notice/notice.jsp");
+			request.setAttribute("pageData", pd);
+			view.forward(request, response);
+		}
 		
 	}
 	
