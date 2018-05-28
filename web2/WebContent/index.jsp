@@ -71,6 +71,7 @@
     <input type="submit" value="확인"/>
     </form><br>
     <% } %>
+	<a href="/notice">공지사항</a>
 </body>
 <script>
 function myInfo(){
