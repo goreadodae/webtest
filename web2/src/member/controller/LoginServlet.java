@@ -18,14 +18,14 @@ import member.model.vo.Member;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public LoginServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,23 +39,30 @@ public class LoginServlet extends HttpServlet {
 		//3. 비즈니스 로직 처리(Controller -> service -> dao -> db 처리 후 리턴)
 		Member m = new MemberService().selectOneMember(userId,userPwd);
 		//4. 처리 결과에 따라 성공/실패 페이지 리턴
-		if(m==null) {
+		System.out.println(request.getRemoteAddr());
+
+		if(userId.equals("admin") && !request.getRemoteAddr().equals("0:0:0:0:0:0:0:1")) {
 			response.sendRedirect("views/member/loginFail.jsp");
 		}
 		else {
-			if(m.getActivation().equals("Y")) {
-				boolean result = new MemberService().changePwdCheck(userId);
-				HttpSession session = request.getSession();
-				session.setAttribute("user", m);
-				if(result) {
-					response.sendRedirect("/views/member/passwordChange.jsp");
-				}
-				else {
-					response.sendRedirect("views/member/loginSuccess.jsp");
-				}
+			if(m==null) {
+				response.sendRedirect("views/member/loginFail.jsp");
 			}
 			else {
-				response.sendRedirect("views/member/loginNoAct.html");
+				if(m.getActivation().equals("Y")) {
+					boolean result = new MemberService().changePwdCheck(userId);
+					HttpSession session = request.getSession();
+					session.setAttribute("user", m);
+					if(result) {
+						response.sendRedirect("/views/member/passwordChange.jsp");
+					}
+					else {
+						response.sendRedirect("views/member/loginSuccess.jsp");
+					}
+				}
+				else {
+					response.sendRedirect("views/member/loginNoAct.html");
+				}
 			}
 		}
 	}

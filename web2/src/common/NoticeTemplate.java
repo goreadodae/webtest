@@ -52,18 +52,18 @@ public class NoticeTemplate {
 		//여기가지 기본적인 구조는 끝남
 		StringBuilder sb = new StringBuilder();
 		if(needPrev) { //시작이 1페이지가 아니라면
-			sb.append("<a href='/"+controllName+"&currentPage="+(startNavi-1)+"'> < </a>");
+			sb.append("<li><a href='/"+controllName+"currentPage="+(startNavi-1)+"'> < </a></li>");
 		}
 		for(int i=startNavi;i<=endNavi;i++) {
 			if(i==currentPage) {
-				sb.append("<a href='/"+controllName+"&currentPage="+i+"'><B>"+i+"</B></a>");
+				sb.append("<li><a href='/"+controllName+"currentPage="+i+"'><B>"+i+"</B></a></li>");
 			}
 			else {
-				sb.append("<a href='/"+controllName+"&currentPage="+i+"'>"+i+"</a>");
+				sb.append("<li><a href='/"+controllName+"currentPage="+i+"'>"+i+"</a></li>");
 			}
 		}
 		if(needNext) {
-			sb.append("<a href='/"+controllName+"&currentPage="+(endNavi+1)+"'> > </a>");
+			sb.append("<li><a href='/"+controllName+"currentPage="+(endNavi+1)+"'> > </a></li>");
 		}
 		return sb.toString();
 	}

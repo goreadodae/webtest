@@ -44,7 +44,7 @@ public class SearchServlet extends HttpServlet {
 		PageData pd = new NoticeService().searchNotice(currentPage, sel, search);
 
 		if(pd==null) {
-			
+			response.sendRedirect("/views");
 		}
 		else {
 			RequestDispatcher view = request.getRequestDispatcher("/views/notice/notice.jsp");

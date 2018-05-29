@@ -71,7 +71,7 @@ public class NoticeDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		String controllName="notice";
+		String controllName="notice?";
 		return NoticeTemplate.getPageNaviHtml(recordTotalCount, recordCountPerPage, currentPage, naviCountPerPage,
 				controllName);
 	}
@@ -118,7 +118,6 @@ public class NoticeDao {
 		ResultSet rset = null;
 		int recordTotalCount = 0; //총 게시물 개수 저장 변수
 		String query = "select count(*) as totalcount from notice where "+sel+" like '%"+search+"%'";
-		System.out.println(query);
 		try {
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
@@ -132,9 +131,84 @@ public class NoticeDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		String controllName="search?sel="+sel+"&search="+search;
+		String controllName="search?sel="+sel+"&search="+search+"&";
 		return NoticeTemplate.getPageNaviHtml(recordTotalCount, recordCountPerPage, currentPage, naviCountPerPage
 				, controllName);
+	}
+
+	public Notice noticeSelect(Connection conn, int noticeNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Notice notice = null;
+		String query = "select * from notice where noticeno=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				notice = new Notice();
+				notice.setNoticeNo(rset.getInt("noticeno"));
+				notice.setSubject(rset.getString("subject"));
+				notice.setContents(rset.getString("contents"));
+				notice.setUserId(rset.getString("userid"));
+				notice.setRegDate(rset.getDate("regdate"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return notice;
+	}
+
+	public int noticeUpdate(Connection conn, String subject, String contents, int noticeNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update notice set subject=?, contents=? where noticeno=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, subject);
+			pstmt.setString(2, contents);
+			pstmt.setInt(3, noticeNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int insertNotice(Connection conn, String subject, String contents) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into notice values(SEQ_NOTICE.NEXTVAL,?,?,'admin',sysdate)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, subject);
+			pstmt.setString(2, contents);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int deleteNotice(Connection conn, int noticeNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from notice where noticeno=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }
