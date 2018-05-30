@@ -40,29 +40,23 @@ public class LoginServlet extends HttpServlet {
 		Member m = new MemberService().selectOneMember(userId,userPwd);
 		//4. 처리 결과에 따라 성공/실패 페이지 리턴
 		System.out.println(request.getRemoteAddr());
-
-		if(userId.equals("admin") && !request.getRemoteAddr().equals("0:0:0:0:0:0:0:1")) {
+		if(m==null) {
 			response.sendRedirect("views/member/loginFail.jsp");
 		}
 		else {
-			if(m==null) {
-				response.sendRedirect("views/member/loginFail.jsp");
-			}
-			else {
-				if(m.getActivation().equals("Y")) {
-					boolean result = new MemberService().changePwdCheck(userId);
-					HttpSession session = request.getSession();
-					session.setAttribute("user", m);
-					if(result) {
-						response.sendRedirect("/views/member/passwordChange.jsp");
-					}
-					else {
-						response.sendRedirect("views/member/loginSuccess.jsp");
-					}
+			if(m.getActivation().equals("Y")) {
+				boolean result = new MemberService().changePwdCheck(userId);
+				HttpSession session = request.getSession();
+				session.setAttribute("user", m);
+				if(result) {
+					response.sendRedirect("/views/member/passwordChange.jsp");
 				}
 				else {
-					response.sendRedirect("views/member/loginNoAct.html");
+					response.sendRedirect("views/member/loginSuccess.jsp");
 				}
+			}
+			else {
+				response.sendRedirect("views/member/loginNoAct.html");
 			}
 		}
 	}

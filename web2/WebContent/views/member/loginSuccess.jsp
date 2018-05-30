@@ -13,6 +13,12 @@
 	setTimeout(function(){
 		location.href="/index.jsp";
 	},500);
+	window.onload = function(){
+		if(opener!=null){
+			opener.location.reload();	
+			window.close();
+		}
+	}
 </script>
 <h1>[<%=m.getUserName() %>]님 환영합니다~</h1>
 </body>
