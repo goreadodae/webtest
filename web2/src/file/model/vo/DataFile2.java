@@ -2,31 +2,37 @@ package file.model.vo;
 
 import java.sql.Timestamp;
 
-import oracle.sql.TIMESTAMP;
-
-public class DataFile {
-	private String fileName;
+public class DataFile2 {
+	private String beforeFileName;
+	private String afterFileName;
 	private String filePath;
 	private long fileSize;
 	private String fileUser;
 	private Timestamp uploadTime;
-	
-	public DataFile() {
-		// TODO Auto-generated constructor stub
-	}
-	public DataFile(String fileName, String filePath, long fileSize, String fileUser, Timestamp uploadTime) {
+	public DataFile2(String beforeFileName, String afterFileName, String filePath, long fileSize, String fileUser,
+			Timestamp uploadTime) {
 		super();
-		this.fileName = fileName;
+		this.beforeFileName = beforeFileName;
+		this.afterFileName = afterFileName;
 		this.filePath = filePath;
 		this.fileSize = fileSize;
 		this.fileUser = fileUser;
 		this.uploadTime = uploadTime;
 	}
-	public String getFileName() {
-		return fileName;
+	public DataFile2() {
+		// TODO Auto-generated constructor stub
 	}
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public String getBeforeFileName() {
+		return beforeFileName;
+	}
+	public void setBeforeFileName(String beforeFileName) {
+		this.beforeFileName = beforeFileName;
+	}
+	public String getAfterFileName() {
+		return afterFileName;
+	}
+	public void setAfterFileName(String afterFileName) {
+		this.afterFileName = afterFileName;
 	}
 	public String getFilePath() {
 		return filePath;
@@ -52,5 +58,4 @@ public class DataFile {
 	public void setUploadTime(Timestamp uploadTime) {
 		this.uploadTime = uploadTime;
 	}
-	
 }

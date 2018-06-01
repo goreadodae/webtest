@@ -55,6 +55,10 @@
     <a href="/logout">로그아웃</a>
     <a href="">회원탈퇴</a>
     <a href="/selectAll">전체회원조회</a>
+        <a href="/views/file/upload.html">업로드</a><br>
+    <a href="/fileList">다운로드</a><br>
+    <a href="/views/file/upload2.html">업로드2</a><br>
+    <a href="/fileList2">다운로드2</a><br>
     <%} else { %>
     <h1>[<%=m.getUserName() %>]님의 페이지</h1>
     <label onclick="myInfo();" id="infoBtn">나의정보</label>
@@ -69,9 +73,14 @@
     <label style="color:red;">비밀번호 입력 : </label>
     <input type="password" name="userPwd"/>
     <input type="submit" value="확인"/>
+ 
     </form><br>
-    <a href="/views/file/upload.html">업로드</a><br>
+        <a href="/views/file/upload.html">업로드</a><br>
+    <a href="/fileList">다운로드</a><br>
+    <a href="/views/file/upload2.html">업로드2</a><br>
+    <a href="/fileList2">다운로드2</a><br>
     <% } %>
+
 	<a href="/notice">공지사항</a><br>
 	
 </body>
